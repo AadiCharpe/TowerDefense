@@ -53,6 +53,7 @@ scene("game", ()=>{
     let enemyY = 7;
     let direction = 1;
     let health = 100;
+    const towerRange = 150;
 
     for(let i = 0; i < tileMap.length; i++) {
         for(let j = 0; j < tileMap[i].length; j++) {
@@ -103,19 +104,10 @@ scene("game", ()=>{
         go("title");
     });
 
-    /*loop(.07, () => {
-        if (tileMap[enemyY][enemyX] == 1) {
-            enemyX++;
-        } else if (tileMap[enemyY][enemyX] == 2) {
-            enemyY--;
-        } else if (tileMap[enemyY][enemyX] == 3) {
-            enemyY++;
-        } else if (tileMap[enemyY][enemyX] == 4) {
-            enemyX--;
-        }
-        circ.pos.x = (enemyX * tileWidth) + 30;
-        circ.pos.y = (enemyY * tileHeight) + 20;
-    })*/
+    loop(.25, () => {
+        if(Math.abs(tower.pos.x - circ.pos.x)  <= towerRange && Math.abs(tower.pos.y - circ.pos.y) <= towerRange)
+            health -= 10;
+    })
 
     onUpdate(() => {
         if(health <= 0)
