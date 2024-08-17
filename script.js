@@ -82,7 +82,7 @@ scene("game", ()=>{
     const circ = add([
         anchor("center"),
         circle(14),
-        pos(5, enemyY * tileHeight + tileHeight / 2),
+        pos(30, enemyY * tileHeight + tileHeight / 2),
         area(),
         "enemy"
     ]);
@@ -115,8 +115,7 @@ scene("game", ()=>{
     });
 
     circ.onCollideUpdate("path", (tile)=>{
-        console.log(circ.pos)
-        debug.log(tileMap[enemyY][enemyX])
+        debug.log(circ.pos.x, circ.pos.y)
         if(circ.pos.x === tile.pos.x && circ.pos.y === tile.pos.y  ){
             if (tileMap[enemyY][enemyX] == 1) {
                 enemyX++;
@@ -133,9 +132,9 @@ scene("game", ()=>{
             } else if (direction === 2) {
                 circ.pos.y -= tileHeight/10;
             } else if (direction === 3) {
-                circ.pos.y += tileHeight/-10;
+                circ.pos.y += tileHeight/10;
             } else if (direction === 4) {
-                circpos.x += tileWidth/-10;
+                circ.pos.x -= tileWidth/10;
             }
         }
         else{
@@ -144,9 +143,9 @@ scene("game", ()=>{
             } else if (direction === 2) {
                 circ.pos.y -= tileHeight/10;
             } else if (direction === 3) {
-                circ.pos.y += tileHeight/-10;
+                circ.pos.y += tileHeight/10;
             } else if (direction === 4) {
-                circpos.x += tileWidth/-10;
+                circ.pos.x -= tileWidth/10;
             }
         }
     })
